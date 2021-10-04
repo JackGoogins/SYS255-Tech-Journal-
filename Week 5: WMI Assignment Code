@@ -1,0 +1,8 @@
+#Task: Grab the network adapter information using the WMI class
+#Get IP Address, default gateway, DNS Servers
+#Bonus: get the dhcp server
+
+Get-WMiObject -list | where { $_.Name -ilike "Win32_NetworkAdapterSetting[IPv4 Address, Default Gateway, DNS Server]*"} | sort-object
+#The code above retrieves Window 32's Network Adapter Settings, with the IPv4 Address, Default Gateway, and DNS Server and sorts them out. It will create a list as an output, where it will show the filter results located in the [].
+
+#The output will be the IPv4 Address, Default Gateway, and the DNS servers in that order. 
