@@ -1,0 +1,8 @@
+#code for LastLogon.ps1
+$user = $EVN:USERPROFILE
+$theTime = Get-Date
+echo "You logged in at: $theTime" | Out-File -Encoding ASCII -Append -FilePath “$user\Desktop\Login-time.txt”
+
+#code for LastLogon.bat
+cmd  /c  start  %windir%\System32\WindowsPowershell\v1.0\powershell.exe -windowstyle hidden -ExecutionPolicy Bypass -file “%~dp0LastLogon.ps1”
+
