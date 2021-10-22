@@ -1,0 +1,29 @@
+#Class notes/code:
+
+#Storyline: Review the Security Event Log
+
+#Directory to save files:
+$myDir - "C:\Users\john.googins-adm\Desktop"
+
+#List all the available Windows Event Logs
+Get-EventLog -list
+
+#Create a prompt to allow user to select the Log to view
+$readLog = Read-host -Prompt "Please select a log to review from the list above"
+
+#Print the results for the log
+Get-EventLog -LogName $readLog -Newest 40 | where {$_.Message -ilike "*new process has been*"   } | export-csv -NoTypeInformation -Path "$myDir\securityLogs.csv"
+
+
+#Homework code:
+
+#Storyline: Create a prompt that allows users to input a keyword or phrase in a String such as "Security"
+
+#Directory to save files:
+$myDir - "C:\Users\john.googins-adm\Desktop"
+
+#Create a prompt to allow user to select the Security Log to view
+$securityLog = Read-host -Prompt "Please enter a keyword from the security log"
+
+#Print the results for the log
+Get-EventLog -LogName security -Newest 40 | where {$_.Message -ilike "*securityLog*"   } | export-csv -NoTypeInformation -Path "$myDir\securityLogs.csv"
